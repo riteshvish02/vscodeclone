@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>vscode</title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div id="overlay">
+      <div id="div">
+        <h2>rename</h2>
+        <form id="changeform" action="" method="post">
+          <input id="changeinp" type="text" name="newname">
+          <input id="changebutton" type="submit" value="change">
+        </form>
+      </div>  
+    </div>
+    <div id="main">
+      <div id="left">
+        <div id="top">
+          <h1>folder</h1>
+          <div id="icons">
+            <i id="fileicon" class="ri-file-line"></i>
+            <i id="foldericon" class="ri-folder-add-line"></i>
+            <a href="/"><i class="ri-refresh-line"></i></a>
+            <i class="ri-file-copy-line"></i>
+          </div>
+        </div>
+        <div id="bottom">
+          <div id="newform" class="fileform">
+            <form class="formone" action="/filecreate">
+              <input type="text" name="filename" />
+            </form>
+          </div>
+          <div id="newform" class="folderform">
+            <form class="formtwo" action="/foldercreate">
+              <input type="text" name="foldername" placeholder="folder" />
+            </form>
+          </div>
+          <% files.forEach(function(dirent){ %>
+          <div id="files">
+            <div id="lefti">
+               <h4>
+                <%if(dirent.isDirectory()){ %>
+                <i class="ri-folder-add-line"></i>
+
+                <% }else{ %>
+                <i class="ri-file-line"></i>
+                <% }%>
+                
+              </h4>
+             <a href="/newroute/<%= dirent.name %>">
+              <h2><%= dirent.name %></h2>
+             </a>
+            </div>
+            <div id="righticon">
+              <i id="edit" data-val="<%=dirent.name%>" class="ri-pencil-line"></i>
+
+              <%if(dirent.isDirectory()){ %>
+                <a href="/folder/delete/<%= dirent.name %>"><i class="ri-delete-bin-5-line"></i></a>
+                <% } else { %>
+                <a href="/file/delete/<%= dirent.name %>"><i class="ri-delete-bin-5-line"></i></a>
+             <% } %>
+              
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+      <div id="right">
+        <h2>nothing to show here</h2>
+      </div>
+    </div>
+    <script src="./javascripts/script.js"></script>
+  </body>
+</html>
